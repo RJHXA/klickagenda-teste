@@ -19,7 +19,7 @@ public class Disponibilidade {
     @ManyToOne
     //@MapsId("usuario")
     @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    private User usuario;
 
     @Column(name = "dia_semana")
     private String diaSemana;
