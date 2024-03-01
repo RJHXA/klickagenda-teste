@@ -10,11 +10,11 @@ import java.util.stream.Collectors;
 public class UserDTO {
 
     private Long id;
-    private String name;
+    private String nome;
 
     public UserDTO(User user) {
         id = user.getId();
-        name = user.getName();
+        nome = user.getName();
     }
 
     public static List<UserDTO> converter(List<User> users) {
