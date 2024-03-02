@@ -27,7 +27,7 @@ public class IntervaloDisponibilidade {
             @JoinColumn(name = "chave_dia_id", referencedColumnName = "chave_dia", nullable = false),
             @JoinColumn(name = "usuario_id_", referencedColumnName = "usuario_id", nullable = false)
     })
-    private Disponibilidade disponibilidade;
+    private Availiability disponibilidade;
 
     @Column(name = "horario_inicio")
     private LocalTime horarioInicio;
