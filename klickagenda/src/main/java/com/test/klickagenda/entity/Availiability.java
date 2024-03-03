@@ -19,6 +19,14 @@ public class Availiability {
     @Column(name = "dia_semana")
     private String dia_semana;
 
+    public AvailiabilityId getId() {
+        return id;
+    }
+
+    public String getDiaSemana() {
+        return dia_semana;
+    }
+
     public void setId(AvailiabilityId newId) {
         this.id = newId;
     }

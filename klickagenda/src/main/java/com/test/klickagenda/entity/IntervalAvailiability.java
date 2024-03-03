@@ -17,7 +17,7 @@ import java.time.LocalTime;
 @Entity
 @Table(name = "intervalo_disponibilidade")
 @Data
-public class IntervaloDisponibilidade {
+public class IntervalAvailiability {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -6,7 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin("http://localhost:3000")
+import java.util.List;
+
+@CrossOrigin("http://localhost:5173/")
 @Repository
 public interface AvailiabilityRepository extends JpaRepository<Availiability, AvailiabilityId>{
+    List<Availiability> findAllByUsuarioId(Long usuarioId);
 }
