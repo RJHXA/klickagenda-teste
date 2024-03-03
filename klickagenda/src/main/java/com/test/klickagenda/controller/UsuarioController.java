@@ -6,6 +6,7 @@ import com.test.klickagenda.dto.User.UserDTO;
 import com.test.klickagenda.entity.User;
 import com.test.klickagenda.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuario")
+@CrossOrigin("http://localhost:5173/")
 public class UsuarioController {
 
     @Autowired
@@ -23,6 +25,14 @@ public class UsuarioController {
 
         List<User> users = userRepository.findAll();
         return UserDTO.converter(users);
+    }
+
+    @GetMapping("{usuario_id}")
+    public ResponseEntity<User> listUser(@PathVariable Long usuario_id) {
+        final Optional<User> optUser = userRepository.findById(usuario_id);
+
+        return optUser.map(user -> ResponseEntity.ok(user))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping

@@ -25,7 +25,6 @@ public class AvailiabilityId implements Serializable{
         return test;
     }
 
-
     public Long getChaveDia() {
         return chave_dia;
     }
