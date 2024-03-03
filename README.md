@@ -8,22 +8,6 @@ Teste Técnico do Klickagenda onde o desafio é criar um um cadastro de disponib
 
 - Para cada dia da semana, os profissionais devem poder selecionar vários intervalos de horários nos quais estão disponíveis para agendamentos. Isso permite uma flexibilidade total na definição dos horários de trabalho.
 
-## Sugestão de Abordagem:
-- Modelagem de Banco de Dados: Crie uma estrutura de banco de dados que permita armazenar as configurações de disponibilidade dos profissionais, incluindo informações sobre os dias da semana e os intervalos de horários selecionados.
-
-- Desenvolvimento de uma API REST: desenvolva uma API REST que permita cadastrar as configurações de disponibilidade dos profissionais e listar todas as disponibilidades cadastradas.
-
-- Desenvolva uma interface web onde os profissionais possam facilmente cadastrar e visualizar suas configurações de disponibilidade de horários. Certifique-se de que a interface seja intuitiva e fácil de usar.
-
-## Observações:
-- Você tem liberdade para escolher a stack que desejar, no entanto, recomendamos dar prioridade ao desenvolvimento com Spring Boot, PostgreSQL, React e Tailwind CSS.
-
-- Não é necessário implementar autenticação e autorização.
-
-- Priorize a qualidade do código, seguindo boas práticas de desenvolvimento.
-
-- Caso deseje, implemente funcionalidades adicionais para melhorar a experiência do usuário e a eficiência do sistema.
-
 ## Comandos rodados para o Postgres:
 
 ### Instalação
@@ -36,12 +20,15 @@ sudo service postgresql start
 
 sudo -u postgres psql
 
-localhost
-post: 5432
-username: postgres
-dbname: postgres
-password: 1234
+## Banco de Dados
 
+### Dados do Banco de Dados
+
+- localhost
+- post: 5432
+- username: postgres
+- dbname: postgres
+- password: 1234
 
 ### DDL 
 CREATE TABLE usuario (id SERIAL PRIMARY KEY, nome VARCHAR(255) NOT NULL);
@@ -50,26 +37,9 @@ CREATE TABLE disponibilidade (chave_dia INTEGER NOT NULL, usuario_id INTEGER REF
 
 CREATE TABLE intervalo_disponibilidade (id SERIAL PRIMARY KEY, chave_dia_id INTEGER, usuario_id_ INTEGER, horario_inicio TIME NOT NULL, horario_fim TIME NOT NULL, CONSTRAINT fk_chave_dia_usuario FOREIGN KEY (chave_dia_id, usuario_id_) REFERENCES disponibilidade(chave_dia, usuario_id));
 
+A Lógica do Banco Dados seria uma tabela para os usuários, uma para a disponibilidade (que tem duas chaves primárias a chave do dia e o id do usuário) e uma para os intervalos que se comunica através de uma chave estrangeira com a tabela da disponibilidade.
 
-### DML
-INSERT INTO usuario (nome) VALUES ('Paulo');
-INSERT INTO disponibilidade (chave_dia, usuario_id, dia_semana) VALUES (1, 1, 'Segunda-feira');
-INSERT INTO intervalo_disponibilidade (chave_dia_id, usuario_id_ ,horario_inicio, horario_fim) VALUES (1, 1 ,'8:00', '12:00'), (1, 1,'14:00', '18:00');
-
-** AJEITAR **
-INSERT INTO disponibilidade (chave_dia, usuario_id, dia_semana) VALUES (2, 1, 'Terça-feira');
-INSERT INTO intervalo_disponibilidade (chave_dia_id, horario_inicio, horario_fim) VALUES (2, '7:00', '10:00'), (2, '12:00', '16:00'), (2, '18:00', '20:00');
-
-INSERT INTO disponibilidade (chave_dia, usuario_id, dia_semana) VALUES (3, 1, 'Quarta-feira');
-INSERT INTO intervalo_disponibilidade (chave_dia_id, horario_inicio, horario_fim) VALUES (3, '9:00', '12:00'), (3, '14:00', '17:00');
-
-INSERT INTO disponibilidade (chave_dia, usuario_id, dia_semana) VALUES (6, 1, 'Sábado');
-
-INSERT INTO usuario (nome) VALUES ('Joana');
-INSERT INTO disponibilidade (chave_dia, usuario_id, dia_semana) VALUES (1, 2, 'Segunda-feira');
-INSERT INTO intervalo_disponibilidade (chave_dia_id, usuario_id_ ,horario_inicio, horario_fim) VALUES (1, 2 ,'9:00', '12:00'), (1, 2,'13:00', '18:00');
-
-
+Chave relacionado aos dias:
 1 -> Segunda
 2 -> Terça
 3 -> Quarta
@@ -77,3 +47,14 @@ INSERT INTO intervalo_disponibilidade (chave_dia_id, usuario_id_ ,horario_inicio
 5 -> Sexta
 6 -> Sábado
 7 -> Domingo
+
+## Requisitos
+- O sistema está com erro, pois falta implementação de métodos de busca aos intervalos por usuário e falta a construção do Front para realizar as requisições
+
+- O que está implementado é a listagem dos usuários e o acesso a outra página onde iria mostrar os seus horários de disponibilidade.
+
+## Próximos Passos
+- Resolver a busca do método de busca pelos horários e de salvar um novo horário;
+- Implementar novos métodos no Spring para algumas buscas;
+- Implementar os outros componentes do Front para realizar as operações CRUD;
+- Estilizar o Front para facilidade de uso;
